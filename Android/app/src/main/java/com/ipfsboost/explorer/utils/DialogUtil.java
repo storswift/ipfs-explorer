@@ -25,7 +25,6 @@ public class DialogUtil {
 
         if (dialog == null || context == null || DialogUtil.context != context) {
             DialogUtil.context = context;
-//            dialog = new Dialog(context);
             dialog = new Dialog(context);
         }
         return dialog;

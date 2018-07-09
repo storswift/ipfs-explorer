@@ -1,1 +1,1 @@
-include ':app',':filepicker','library'
+include ':app',':filepicker',':library', ":java-ipfs-api"

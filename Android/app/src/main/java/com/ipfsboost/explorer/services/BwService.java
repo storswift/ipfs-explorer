@@ -15,10 +15,10 @@ import android.support.v4.app.NotificationManagerCompat;
 import com.ipfsboost.explorer.MainActivity;
 import com.ipfsboost.explorer.R;
 import com.ipfsboost.explorer.utils.LogUtils;
-
-import org.greenrobot.eventbus.EventBus;
 import com.ipfsboost.library.IpfsBox;
 import com.ipfsboost.library.entity.Stats_bw;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -7,10 +7,10 @@ public class LogUtils {
     }
 
     public static void e(String message) {
-        Log.e(""+getLineInfo(), message);
+        Log.e("" + getLineInfo(), message);
     }
-    public static String getLineInfo()
-    {
+
+    public static String getLineInfo() {
         StackTraceElement ste = new Throwable().getStackTrace()[1];
         return ste.getFileName() + ": Line " + ste.getLineNumber();
     }

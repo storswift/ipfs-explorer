@@ -60,8 +60,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     EditText edt_search;
     @BindView(R.id.tv_upload)
     TextView tv_upload;
-    @BindView(R.id.icon_group)
-    TextView icon_group;
+    @BindView(R.id.about)
+    TextView about;
     private static int WRITE_EXTERNAL_STORAGE = 144;
 
     public Dialog dialog;
@@ -80,12 +80,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         supportActionBar.setDisplayShowHomeEnabled(true);
         supportActionBar.setIcon(R.drawable.icon_status_dot_green);
 
+        about.setOnClickListener(this);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
         btn_play.setOnClickListener(this);
         btn_scan.setOnClickListener(this);
         tv_upload.setOnClickListener(this);
-        icon_group.setOnClickListener(this);
     }
 
     @Override
@@ -119,9 +119,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.stop:
                 CmdIntentService.startActionShutdown(this);
                 break;
-            case R.id.icon_group:
-                MobclickAgent.onEvent(this, "MainActivity_jumpGroup");
-                startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://t.me/joinchat/HjRVuhJL9AcrSAXvwhBjYw")));
+            case R.id.about: {
+                Intent myIntent = new Intent(getBaseContext(), AboutActivity.class);
+                myIntent.putExtra("key", "about"); //Optional parameters
+                this.startActivity(myIntent);
+            }
                 break;
         }
     }
