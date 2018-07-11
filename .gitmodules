@@ -1,0 +1,6 @@
+[submodule "java-ipfs-api"]
+	path = java-ipfs-api
+	url = git@github.com:ipfs/java-ipfs-api.git
+[submodule "FilePicker"]
+	path = FilePicker
+	url = git@github.com:DroidNinja/Android-FilePicker.git

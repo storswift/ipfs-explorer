@@ -93,7 +93,7 @@ public class IpfsDaemon {
         command("shutdown");
     }
 
-    public String add(String absPath) throws IOException, InterruptedException {
+    public String add(String absPath) throws IOException {
         if (new File(absPath).exists()) {
             Process exec = command("Add " + absPath);
             BufferedReader command = new BufferedReader(new InputStreamReader(exec.getInputStream()));

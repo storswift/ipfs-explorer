@@ -101,7 +101,4 @@ public class CmdIntentService extends IntentService {
             EventBus.getDefault().post(new CmdIntentServiceAddEvent(addedHash));
         }
     }
-
-
-
 }

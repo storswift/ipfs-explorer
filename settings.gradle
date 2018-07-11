@@ -1,1 +1,4 @@
-include ':app',':filepicker',':library', ":java-ipfs-api"
+include ':app', ':filepicker'
+include ':library'
+include ":java-ipfs-api"
+project(':filepicker').projectDir = new File('FilePicker/filepicker')

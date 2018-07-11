@@ -20,17 +20,17 @@ import io.ipfs.multihash.Multihash;
 
 public class AboutActivity extends AppCompatActivity {
     @BindView(R.id.PeerID)
-    public TextView PeerID;
+    TextView PeerID;
     @BindView(R.id.Location)
-    public TextView Location;
+    TextView Location;
     @BindView(R.id.AgentVersion)
-    public TextView AgentVersion;
+    TextView AgentVersion;
     @BindView(R.id.ProtocolVersion)
-    public TextView ProtocolVersion;
+    TextView ProtocolVersion;
     @BindView(R.id.PublicKey)
-    public TextView PublicKey;
+    TextView PublicKey;
     @BindView(R.id.NetworkAddresses)
-    public TextView NetworkAddresses;
+    TextView NetworkAddresses;
     Map ipfsId = null;
 
     @Override
@@ -79,31 +79,6 @@ public class AboutActivity extends AppCompatActivity {
         }
     };
 
-    class AskIpfsInfo implements Runnable {
-        private AboutActivity aboutActivity;
-
-        public AskIpfsInfo(AboutActivity activity) {
-            aboutActivity = activity;
-        }
-
-        @Override
-        public void run() {
-            try {
-                IPFS ipfs = new IPFS("/ip4/127.0.0.1/tcp/5001");
-                List<Multihash> multihashList = ipfs.refs.local();
-                Map id = ipfs.id();
-
-                aboutActivity.PeerID.setText(id.get("ID").toString());
-                aboutActivity.Location.setText(id.get("Location").toString());
-                aboutActivity.AgentVersion.setText(id.get("AgentVersion").toString());
-                aboutActivity.ProtocolVersion.setText(id.get("ProtocolVersion").toString());
-                aboutActivity.PublicKey.setText(id.get("PublicKey").toString());
-                aboutActivity.NetworkAddresses.setText(id.get("NetworkAddresses").toString());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public void onClickAbout(View view) {
     }
 }
-

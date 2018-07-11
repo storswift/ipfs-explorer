@@ -1,9 +1,19 @@
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+    }
+}
+
 apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.ipfsboost.explorer"
+        applicationId 'com.ipfsboost.explorer'
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 2
@@ -35,24 +45,21 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:support-compat:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    //knife
-    implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:support-vector-drawable:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    runtimeOnly 'com.umeng.sdk:common:latest.integration'
+    implementation 'com.umeng.sdk:common:latest.integration'
     implementation 'com.umeng.sdk:analytics:latest.integration'
-    implementation project(':filepicker')
-    implementation project(':library')
     implementation project(':java-ipfs-api')
-    implementation files(':java-ipfs-api/lib/cid.jar')
-    implementation files(':java-ipfs-api/lib/hamcrest-core-1.3.jar')
-    implementation files(':java-ipfs-api/lib/junit-4.12.jar')
-    implementation files(':java-ipfs-api/lib/multiaddr.jar')
-    implementation files(':java-ipfs-api/lib/multibase.jar')
-    implementation files(':java-ipfs-api/lib/multihash.jar')
+    implementation project(':library')
+    implementation project(':filepicker')
+}
+
+repositories {
+    jcenter()
+    google()
 }

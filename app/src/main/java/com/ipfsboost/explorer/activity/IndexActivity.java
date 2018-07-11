@@ -4,16 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.ipfsboost.explorer.NavigationActivity;
+import com.ipfsboost.explorer.R;
+import com.ipfsboost.explorer.event.CmdIntentServiceDaemonEvent;
+import com.ipfsboost.explorer.event.ExecLog;
 import com.ipfsboost.explorer.services.CmdIntentService;
 import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import com.ipfsboost.explorer.MainActivity;
-import com.ipfsboost.explorer.R;
-import com.ipfsboost.explorer.event.CmdIntentServiceDaemonEvent;
-import com.ipfsboost.explorer.event.ExecLog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,13 +30,12 @@ public class IndexActivity extends BaseActivity {
         getSupportActionBar().hide();
 
         CmdIntentService.startActionDaemon(this);
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void MessageEvent(CmdIntentServiceDaemonEvent event) {
         MobclickAgent.onEvent(this,"IndexActivity_successDaemon");
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, NavigationActivity.class));
         finish();
     }
 
