@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.ipfsboost.explorer.NavigationActivity;
+import com.ipfsboost.explorer.Main4Activity;
 import com.ipfsboost.explorer.R;
 import com.ipfsboost.explorer.event.CmdIntentServiceDaemonEvent;
 import com.ipfsboost.explorer.event.ExecLog;
@@ -35,15 +35,17 @@ public class IndexActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void MessageEvent(CmdIntentServiceDaemonEvent event) {
         MobclickAgent.onEvent(this,"IndexActivity_successDaemon");
-        startActivity(new Intent(this, NavigationActivity.class));
+        startActivity(new Intent(this, Main4Activity.class));
         finish();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void MessageEvent(ExecLog event) {
-        tvLog.append(event.log + "\n");
-        if (event.log.contains("shutdown")) {
-            CmdIntentService.startActionDaemon(this);
+        if (event != null) {
+            tvLog.append(event.log + "\n");
+            if (event.log.contains("shutdown")) {
+                CmdIntentService.startActionDaemon(this);
+            }
         }
     }
 

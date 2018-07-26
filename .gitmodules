@@ -4,3 +4,6 @@
 [submodule "FilePicker"]
 	path = FilePicker
 	url = git@github.com:DroidNinja/Android-FilePicker.git
+[submodule "filemanager"]
+	path = filemanager
+	url = git@github.com:openintents/filemanager.git

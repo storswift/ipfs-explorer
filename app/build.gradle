@@ -38,6 +38,7 @@ android {
     buildToolsVersion '27.0.3'
     productFlavors {
     }
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res-filemanager'] } }
 }
 
 dependencies {
@@ -57,9 +58,14 @@ dependencies {
     implementation project(':java-ipfs-api')
     implementation project(':library')
     implementation project(':filepicker')
+    implementation(name: 'material-release', ext: 'aar')
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 }
 
 repositories {
     jcenter()
     google()
+    flatDir {
+        dirs 'libs'
+    }
 }
