@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.view.CheckableFileListItem;
 import org.openintents.filemanager.view.ViewHolder;

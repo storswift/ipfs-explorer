@@ -3,12 +3,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <org.openintents.filemanager.view.PathBar
-        android:id="@+id/pathbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/topBar_height"
-        android:background="?org.openintents.filemanager:attr/pathBarBackground">
-    </org.openintents.filemanager.view.PathBar>
+    <!--<org.openintents.filemanager.view.PathBar-->
+        <!--android:id="@+id/pathbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/topBar_height"-->
+        <!--android:background="?org.openintents.filemanager:attr/pathBarBackground">-->
+    <!--</org.openintents.filemanager.view.PathBar>-->
 
     <TextView
         android:id="@+id/message"

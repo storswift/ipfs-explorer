@@ -19,9 +19,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.PreferenceActivity;
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
 import org.openintents.filemanager.files.FileHolder;
@@ -218,48 +220,42 @@ public class SimpleFileListFragment extends FileListFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        int i = item.getItemId();
+        if (i == R.id.menu_create_folder) {
+            CreateDirectoryDialog dialog = new CreateDirectoryDialog();
+            dialog.setTargetFragment(this, 0);
+            Bundle args = new Bundle();
+            args.putString(FileManagerIntents.EXTRA_DIR_PATH, getPath());
+            dialog.setArguments(args);
+            dialog.show(getActivity().getSupportFragmentManager(), CreateDirectoryDialog.class.getName());
+            return true;
+        } else if (i == R.id.menu_media_scan_include) {
+            includeInMediaScan();
+            return true;
+        } else if (i == R.id.menu_media_scan_exclude) {
+            excludeFromMediaScan();
+            return true;
+        } else if (i == R.id.menu_paste) {
+            if (((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste())
+                ((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(getPath()), new CopyHelper.OnOperationFinishedListener() {
+                    @Override
+                    public void operationFinished(boolean success) {
+                        refresh();
 
-            case R.id.menu_create_folder:
-                CreateDirectoryDialog dialog = new CreateDirectoryDialog();
-                dialog.setTargetFragment(this, 0);
-                Bundle args = new Bundle();
-                args.putString(FileManagerIntents.EXTRA_DIR_PATH, getPath());
-                dialog.setArguments(args);
-                dialog.show(getActivity().getSupportFragmentManager(), CreateDirectoryDialog.class.getName());
-                return true;
-
-            case R.id.menu_media_scan_include:
-                includeInMediaScan();
-                return true;
-
-            case R.id.menu_media_scan_exclude:
-                excludeFromMediaScan();
-                return true;
-
-            case R.id.menu_paste:
-                if (((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste())
-                    ((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(getPath()), new CopyHelper.OnOperationFinishedListener() {
-                        @Override
-                        public void operationFinished(boolean success) {
-                            refresh();
-
-                            // Refresh options menu
-                            getActivity().supportInvalidateOptionsMenu();
-                        }
-                    });
-                else
-                    Toast.makeText(getActivity(), R.string.nothing_to_paste, Toast.LENGTH_LONG).show();
-                return true;
-
-            case R.id.menu_multiselect:
-                Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
-                intent.putExtra(FileManagerIntents.EXTRA_DIR_PATH, getPath());
-                startActivityForResult(intent, REQUEST_CODE_MULTISELECT);
-                return true;
-
-            default:
-                return false;
+                        // Refresh options menu
+                        getActivity().supportInvalidateOptionsMenu();
+                    }
+                });
+            else
+                Toast.makeText(getActivity(), R.string.nothing_to_paste, Toast.LENGTH_LONG).show();
+            return true;
+        } else if (i == R.id.menu_multiselect) {
+            Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
+            intent.putExtra(FileManagerIntents.EXTRA_DIR_PATH, getPath());
+            startActivityForResult(intent, REQUEST_CODE_MULTISELECT);
+            return true;
+        } else {
+            return false;
         }
     }
 

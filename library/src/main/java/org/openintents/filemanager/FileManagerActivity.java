@@ -30,6 +30,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
@@ -169,34 +171,30 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.menu_search:
-                onSearchRequested();
-                return true;
-
-            case R.id.menu_settings:
-                Intent intent = new Intent(this, PreferenceActivity.class);
+        int i = item.getItemId();
+        if (i == R.id.menu_search) {
+            onSearchRequested();
+            return true;
+        } else if (i == R.id.menu_settings) {
+            Intent intent = new Intent(this, PreferenceActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (i == R.id.menu_bookmarks) {
+            startActivityForResult(new Intent(FileManagerActivity.this, BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
+            return true;
+        } else if (i == R.id.menu_donate) {
+            Intent intent;
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://openintents.org/en/contribute"));
+            try {
                 startActivity(intent);
-                return true;
-
-            case R.id.menu_bookmarks:
-                startActivityForResult(new Intent(FileManagerActivity.this, BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
-                return true;
-
-            case R.id.menu_donate:
-                intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://openintents.org/en/contribute"));
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    // ignore
-                }
-                return true;
-
-            case android.R.id.home:
-                mFragment.browseToHome();
-                return true;
+            } catch (ActivityNotFoundException e) {
+                // ignore
+            }
+            return true;
+        } else if (i == android.R.id.home) {
+            mFragment.browseToHome();
+            return true;
         }
         return super.onOptionsItemSelected(item);
 

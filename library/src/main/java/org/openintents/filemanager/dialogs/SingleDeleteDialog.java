@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.util.MediaScannerUtils;

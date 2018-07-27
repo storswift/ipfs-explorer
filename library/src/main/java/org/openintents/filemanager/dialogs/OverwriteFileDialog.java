@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.util.UIUtils;
 
 public class OverwriteFileDialog extends DialogFragment {

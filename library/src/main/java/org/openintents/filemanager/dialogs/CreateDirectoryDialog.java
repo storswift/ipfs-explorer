@@ -14,7 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.dialogs.OverwriteFileDialog.Overwritable;
 import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.util.UIUtils;

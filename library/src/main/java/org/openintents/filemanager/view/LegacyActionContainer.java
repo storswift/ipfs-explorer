@@ -12,7 +12,9 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 
 public class LegacyActionContainer extends LinearLayout {
     private Menu menu = null;

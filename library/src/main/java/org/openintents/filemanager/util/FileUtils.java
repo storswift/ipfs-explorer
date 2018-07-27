@@ -24,8 +24,10 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.FileManagerProvider;
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.intents.FileManagerIntents;
 

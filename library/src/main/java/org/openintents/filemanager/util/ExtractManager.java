@@ -6,7 +6,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

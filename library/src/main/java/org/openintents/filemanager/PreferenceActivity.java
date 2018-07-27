@@ -31,6 +31,8 @@ import android.support.annotation.VisibleForTesting;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.search.SearchableActivity;
 import org.openintents.filemanager.util.UIUtils;

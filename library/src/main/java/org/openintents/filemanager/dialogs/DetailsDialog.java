@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.UIUtils;

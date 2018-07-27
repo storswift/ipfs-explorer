@@ -8,6 +8,8 @@ import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.lists.MultiselectListFragment;
 import org.openintents.filemanager.lists.PickFileListFragment;

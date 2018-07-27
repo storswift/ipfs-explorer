@@ -20,7 +20,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
+
+
+import com.ipfsboost.library.R;
 
 import java.io.File;
 

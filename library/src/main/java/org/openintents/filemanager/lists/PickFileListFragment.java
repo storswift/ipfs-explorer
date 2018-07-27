@@ -12,9 +12,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.view.PickBar;
 import org.openintents.filemanager.view.PickBar.OnPickRequestedListener;

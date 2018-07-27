@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.view.ViewHolder;
 

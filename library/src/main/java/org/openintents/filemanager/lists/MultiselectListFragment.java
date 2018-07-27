@@ -12,7 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.LegacyActionContainer;
@@ -87,19 +89,19 @@ public class MultiselectListFragment extends FileListFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         ListView list = getListView();
 
-        switch (item.getItemId()) {
-            case R.id.check_all:
-                for (int i = 0; i < mAdapter.getCount(); i++) {
-                    list.setItemChecked(i, true);
-                }
-                return true;
-            case R.id.uncheck_all:
-                for (int i = 0; i < mAdapter.getCount(); i++) {
-                    list.setItemChecked(i, false);
-                }
-                return true;
-            default:
-                return false;
+        int i1 = item.getItemId();
+        if (i1 == R.id.check_all) {
+            for (int i = 0; i < mAdapter.getCount(); i++) {
+                list.setItemChecked(i, true);
+            }
+            return true;
+        } else if (i1 == R.id.uncheck_all) {
+            for (int i = 0; i < mAdapter.getCount(); i++) {
+                list.setItemChecked(i, false);
+            }
+            return true;
+        } else {
+            return false;
         }
     }
 

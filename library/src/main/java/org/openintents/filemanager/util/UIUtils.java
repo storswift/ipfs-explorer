@@ -3,7 +3,9 @@ package org.openintents.filemanager.util;
 import android.app.Activity;
 import android.preference.PreferenceManager;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 
 public abstract class UIUtils {
 

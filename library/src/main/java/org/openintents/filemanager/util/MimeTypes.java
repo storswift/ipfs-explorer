@@ -21,6 +21,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.XmlResourceParser;
 import android.webkit.MimeTypeMap;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.R;
 import org.xmlpull.v1.XmlPullParserException;
 

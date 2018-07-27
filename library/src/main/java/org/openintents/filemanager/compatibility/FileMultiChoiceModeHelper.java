@@ -7,7 +7,9 @@ import android.view.MenuItem;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ListView;
 
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.MenuUtils;
@@ -65,26 +67,26 @@ public class FileMultiChoiceModeHelper {
         public boolean onActionItemClicked(android.view.ActionMode mode,
                                            MenuItem item) {
             boolean res;
-            switch (item.getItemId()) {
-                case R.id.menu_select_all:
-                    for (int i = 0; i < list.getAdapter().getCount(); i++) {
-                        list.setItemChecked(i, true);
-                    }
-                    res = true;
-                    break;
-                default:
-                    switch (list.getCheckedItemCount()) {
-                        // Single selection
-                        case 1:
-                            res = MenuUtils.handleSingleSelectionAction(fragment, item,
-                                    (FileHolder) list.getAdapter().getItem(getSelectedPosition()), fragment.getActivity());
-                            break;
-                        // Multiple selection
-                        default:
-                            res = MenuUtils.handleMultipleSelectionAction(fragment, item, getCheckedItems(), fragment.getActivity());
-                            break;
-                    }
-                    mode.finish();
+            int i1 = item.getItemId();
+            if (i1 == R.id.menu_select_all) {
+                for (int i = 0; i < list.getAdapter().getCount(); i++) {
+                    list.setItemChecked(i, true);
+                }
+                res = true;
+
+            } else {
+                switch (list.getCheckedItemCount()) {
+                    // Single selection
+                    case 1:
+                        res = MenuUtils.handleSingleSelectionAction(fragment, item,
+                                (FileHolder) list.getAdapter().getItem(getSelectedPosition()), fragment.getActivity());
+                        break;
+                    // Multiple selection
+                    default:
+                        res = MenuUtils.handleMultipleSelectionAction(fragment, item, getCheckedItems(), fragment.getActivity());
+                        break;
+                }
+                mode.finish();
             }
 
             return res;

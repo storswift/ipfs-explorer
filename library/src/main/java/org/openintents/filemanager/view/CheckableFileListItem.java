@@ -7,7 +7,9 @@ import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.RelativeLayout;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 
 /**
  * An extension to the item_filelist layout that implements the checkable interface and displays a {@link CheckBox} to the right of the standard layout.

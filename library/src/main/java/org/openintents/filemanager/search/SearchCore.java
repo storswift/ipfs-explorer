@@ -6,7 +6,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 
 import java.io.File;
 import java.io.FilenameFilter;

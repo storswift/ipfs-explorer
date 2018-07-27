@@ -18,8 +18,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.FileManagerActivity;
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;

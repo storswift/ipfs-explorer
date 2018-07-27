@@ -6,7 +6,9 @@ import android.view.MenuItem;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.bookmarks.BookmarkListAdapter;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 
@@ -35,20 +37,20 @@ public class BookmarkListActionHandler {
                 id = ListViewMethodHelper.listView_getCheckedItemIds(list)[0];
 
             // Handle selection
-            switch (item.getItemId()) {
-                case R.id.menu_delete:
-                    list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[]{Long.toString(id)});
-                    break;
+            int i = item.getItemId();
+            if (i == R.id.menu_delete) {
+                list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[]{Long.toString(id)});
+
             }
             // Multiple selection
         } else {
-            switch (item.getItemId()) {
-                case R.id.menu_delete:
-                    long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(list);
-                    for (int i = 0; i < ids.length; i++) {
-                        list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[]{Long.toString(ids[i])});
-                    }
-                    break;
+            int i1 = item.getItemId();
+            if (i1 == R.id.menu_delete) {
+                long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(list);
+                for (int i = 0; i < ids.length; i++) {
+                    list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[]{Long.toString(ids[i])});
+                }
+
             }
         }
 

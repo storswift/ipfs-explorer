@@ -19,9 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.FileHolderListAdapter;
 import org.openintents.filemanager.FileManagerApplication;
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.DirectoryContents;
 import org.openintents.filemanager.files.DirectoryScanner;
 import org.openintents.filemanager.files.FileHolder;

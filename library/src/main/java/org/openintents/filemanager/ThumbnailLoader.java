@@ -21,6 +21,8 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.ImageUtils;

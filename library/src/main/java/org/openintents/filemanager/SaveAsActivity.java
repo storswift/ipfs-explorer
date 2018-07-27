@@ -10,6 +10,8 @@ import android.os.Environment;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 

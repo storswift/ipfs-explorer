@@ -13,7 +13,9 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-import org.openintents.filemanager.R;
+import com.ipfsboost.library.R;
+
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.BookmarkListActionHandler;
 import org.openintents.filemanager.compatibility.BookmarkMultiChoiceModeHelper;
 

@@ -25,11 +25,13 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.ipfsboost.library.R;
+
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
-import org.openintents.filemanager.R;
+//import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.dialogs.DetailsDialog;
 import org.openintents.filemanager.dialogs.MultiCompressDialog;
@@ -118,51 +120,51 @@ public abstract class MenuUtils {
         DialogFragment dialog;
         Bundle args;
 
-        switch (mItem.getItemId()) {
-            case R.id.menu_send:
-                Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
-                ArrayList<Uri> uris = new ArrayList<>();
-                intent.setType("text/plain");
+        int i = mItem.getItemId();
+        if (i == R.id.menu_send) {
+            Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+            ArrayList<Uri> uris = new ArrayList<>();
+            intent.setType("text/plain");
 
-                for (FileHolder fh : fItems)
-                    uris.add(FileUtils.getUri(fh.getFile()));
+            for (FileHolder fh : fItems)
+                uris.add(FileUtils.getUri(fh.getFile()));
 
-                intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+            intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 
-                context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_chooser_title)));
-                break;
-            case R.id.menu_delete:
-                dialog = new MultiDeleteDialog();
-                dialog.setTargetFragment(navigator, 0);
-                args = new Bundle();
-                args.putParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, new ArrayList<Parcelable>(fItems));
-                dialog.setArguments(args);
-                dialog.show(navigator.getFragmentManager(), MultiDeleteDialog.class.getName());
-                break;
-            case R.id.menu_move:
-                ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItems);
-                navigator.updateClipboardInfo();
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_chooser_title)));
 
-                // Refresh options menu
-                navigator.getActivity().supportInvalidateOptionsMenu();
-                break;
-            case R.id.menu_copy:
-                ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItems);
-                navigator.updateClipboardInfo();
+        } else if (i == R.id.menu_delete) {
+            dialog = new MultiDeleteDialog();
+            dialog.setTargetFragment(navigator, 0);
+            args = new Bundle();
+            args.putParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, new ArrayList<Parcelable>(fItems));
+            dialog.setArguments(args);
+            dialog.show(navigator.getFragmentManager(), MultiDeleteDialog.class.getName());
 
-                // Refresh options menu
-                navigator.getActivity().supportInvalidateOptionsMenu();
-                break;
-            case R.id.menu_compress:
-                dialog = new MultiCompressDialog();
-                dialog.setTargetFragment(navigator, 0);
-                args = new Bundle();
-                args.putParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, new ArrayList<Parcelable>(fItems));
-                dialog.setArguments(args);
-                dialog.show(navigator.getFragmentManager(), MultiCompressDialog.class.getName());
-                break;
-            default:
-                return false;
+        } else if (i == R.id.menu_move) {
+            ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItems);
+            navigator.updateClipboardInfo();
+
+            // Refresh options menu
+            navigator.getActivity().supportInvalidateOptionsMenu();
+
+        } else if (i == R.id.menu_copy) {
+            ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItems);
+            navigator.updateClipboardInfo();
+
+            // Refresh options menu
+            navigator.getActivity().supportInvalidateOptionsMenu();
+
+        } else if (i == R.id.menu_compress) {
+            dialog = new MultiCompressDialog();
+            dialog.setTargetFragment(navigator, 0);
+            args = new Bundle();
+            args.putParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, new ArrayList<Parcelable>(fItems));
+            dialog.setArguments(args);
+            dialog.show(navigator.getFragmentManager(), MultiCompressDialog.class.getName());
+
+        } else {
+            return false;
         }
 
         return true;
@@ -178,116 +180,105 @@ public abstract class MenuUtils {
         DialogFragment dialog;
         Bundle args;
 
-        switch (mItem.getItemId()) {
-            case R.id.menu_open:
-                navigator.openInformingPathBar(fItem);
+        int i = mItem.getItemId();
+        if (i == R.id.menu_open) {
+            navigator.openInformingPathBar(fItem);
+            return true;
+        } else if (i == R.id.menu_create_shortcut) {
+            createShortcut(fItem, context);
+            return true;
+        } else if (i == R.id.menu_move) {
+            ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItem);
+            navigator.updateClipboardInfo();
+
+            // Refresh options menu
+            navigator.getActivity().supportInvalidateOptionsMenu();
+            return true;
+        } else if (i == R.id.menu_copy) {
+            ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItem);
+            navigator.updateClipboardInfo();
+
+            // Refresh options menu
+            navigator.getActivity().supportInvalidateOptionsMenu();
+            return true;
+        } else if (i == R.id.menu_delete) {
+            dialog = new SingleDeleteDialog();
+            dialog.setTargetFragment(navigator, 0);
+            args = new Bundle();
+            args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+            dialog.setArguments(args);
+            dialog.show(navigator.getFragmentManager(), SingleDeleteDialog.class.getName());
+            return true;
+        } else if (i == R.id.menu_rename) {
+            dialog = new RenameDialog();
+            dialog.setTargetFragment(navigator, 0);
+            args = new Bundle();
+            args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+            dialog.setArguments(args);
+            dialog.show(navigator.getFragmentManager(), RenameDialog.class.getName());
+            return true;
+        } else if (i == R.id.menu_send) {
+            sendFile(fItem, context);
+            return true;
+        } else if (i == R.id.menu_details) {
+            dialog = new DetailsDialog();
+            dialog.setTargetFragment(navigator, 0);
+            args = new Bundle();
+            args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+            dialog.setArguments(args);
+            dialog.show(navigator.getFragmentManager(), DetailsDialog.class.getName());
+            return true;
+        } else if (i == R.id.menu_compress) {
+            dialog = new SingleCompressDialog();
+            dialog.setTargetFragment(navigator, 0);
+            args = new Bundle();
+            args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+            dialog.setArguments(args);
+            dialog.show(navigator.getFragmentManager(), SingleCompressDialog.class.getName());
+            return true;
+        } else if (i == R.id.menu_extract) {
+            File dest = new File(fItem.getFile().getParentFile(), FileUtils.getNameWithoutExtension(fItem.getFile()));
+            dest.mkdirs();
+
+            // Changed from the previous behavior.
+            // We just extract on the current directory. If the user needs to put it in another dir,
+            // he/she can copy/cut the file with the new, equally easy to use way.
+            new ExtractManager(context)
+                    .setOnExtractFinishedListener(new ExtractManager.OnExtractFinishedListener() {
+
+                        @Override
+                        public void extractFinished() {
+                            navigator.refresh();
+                        }
+                    })
+                    .extract(fItem.getFile(), dest.getAbsolutePath());
+            return true;
+        } else if (i == R.id.menu_bookmark) {
+            String path = fItem.getFile().getAbsolutePath();
+            Cursor query = context.getContentResolver().query(BookmarksProvider.CONTENT_URI,
+                    new String[]{BookmarksProvider._ID},
+                    BookmarksProvider.PATH + "=?",
+                    new String[]{path},
+                    null);
+            if (!query.moveToFirst()) {
+                ContentValues values = new ContentValues();
+                values.put(BookmarksProvider.NAME, fItem.getName());
+                values.put(BookmarksProvider.PATH, path);
+                context.getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
+                Toast.makeText(context, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
+            }
+            query.close();
+            return true;
+        } else if (i == R.id.menu_more) {
+            if (!PreferenceActivity.getShowAllWarning(context)) {
+                showMoreCommandsDialog(fItem, context);
                 return true;
+            }
+            showWarningDialog(fItem, context);
 
-            case R.id.menu_create_shortcut:
-                createShortcut(fItem, context);
-                return true;
-
-            case R.id.menu_move:
-                ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItem);
-                navigator.updateClipboardInfo();
-
-                // Refresh options menu
-                navigator.getActivity().supportInvalidateOptionsMenu();
-                return true;
-
-            case R.id.menu_copy:
-                ((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItem);
-                navigator.updateClipboardInfo();
-
-                // Refresh options menu
-                navigator.getActivity().supportInvalidateOptionsMenu();
-                return true;
-
-            case R.id.menu_delete:
-                dialog = new SingleDeleteDialog();
-                dialog.setTargetFragment(navigator, 0);
-                args = new Bundle();
-                args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
-                dialog.setArguments(args);
-                dialog.show(navigator.getFragmentManager(), SingleDeleteDialog.class.getName());
-                return true;
-
-            case R.id.menu_rename:
-                dialog = new RenameDialog();
-                dialog.setTargetFragment(navigator, 0);
-                args = new Bundle();
-                args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
-                dialog.setArguments(args);
-                dialog.show(navigator.getFragmentManager(), RenameDialog.class.getName());
-                return true;
-
-            case R.id.menu_send:
-                sendFile(fItem, context);
-                return true;
-
-            case R.id.menu_details:
-                dialog = new DetailsDialog();
-                dialog.setTargetFragment(navigator, 0);
-                args = new Bundle();
-                args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
-                dialog.setArguments(args);
-                dialog.show(navigator.getFragmentManager(), DetailsDialog.class.getName());
-                return true;
-
-            case R.id.menu_compress:
-                dialog = new SingleCompressDialog();
-                dialog.setTargetFragment(navigator, 0);
-                args = new Bundle();
-                args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
-                dialog.setArguments(args);
-                dialog.show(navigator.getFragmentManager(), SingleCompressDialog.class.getName());
-                return true;
-
-            case R.id.menu_extract:
-                File dest = new File(fItem.getFile().getParentFile(), FileUtils.getNameWithoutExtension(fItem.getFile()));
-                dest.mkdirs();
-
-                // Changed from the previous behavior.
-                // We just extract on the current directory. If the user needs to put it in another dir,
-                // he/she can copy/cut the file with the new, equally easy to use way.
-                new ExtractManager(context)
-                        .setOnExtractFinishedListener(new ExtractManager.OnExtractFinishedListener() {
-
-                            @Override
-                            public void extractFinished() {
-                                navigator.refresh();
-                            }
-                        })
-                        .extract(fItem.getFile(), dest.getAbsolutePath());
-                return true;
-
-            case R.id.menu_bookmark:
-                String path = fItem.getFile().getAbsolutePath();
-                Cursor query = context.getContentResolver().query(BookmarksProvider.CONTENT_URI,
-                        new String[]{BookmarksProvider._ID},
-                        BookmarksProvider.PATH + "=?",
-                        new String[]{path},
-                        null);
-                if (!query.moveToFirst()) {
-                    ContentValues values = new ContentValues();
-                    values.put(BookmarksProvider.NAME, fItem.getName());
-                    values.put(BookmarksProvider.PATH, path);
-                    context.getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
-                    Toast.makeText(context, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
-                }
-                query.close();
-                return true;
-
-            case R.id.menu_more:
-                if (!PreferenceActivity.getShowAllWarning(context)) {
-                    showMoreCommandsDialog(fItem, context);
-                    return true;
-                }
-                showWarningDialog(fItem, context);
-
-                return true;
+            return true;
         }
 
         return false;
